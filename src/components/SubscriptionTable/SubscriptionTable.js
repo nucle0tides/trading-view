@@ -14,7 +14,6 @@ const SubscriptionTable = ({ subscriptions, data, onChange }) => {
     onChange(e.target.value, e.target.dataset.mrr);
   };
 
-  // figure out good way to set 'checked value' from subs list
   return (
     <Table>
       <thead>
