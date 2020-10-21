@@ -8,12 +8,22 @@ const SubscriptionTable = ({ subscriptions, data, onChange }) => {
     setChecked(subscriptions);
   }, [subscriptions]);
 
+  /*
+     Hardcoding these works for now. If we need a reusable table, that can be addressed later.
+   */
   const headers = ['Company Name', 'Status', 'Invoice No.', 'Synced From', 'Start Date', 'End Date', 'Monthly Revenue'];
 
   const handleChange = (e) => {
     onChange(e.target.value, e.target.dataset.mrr);
   };
 
+  /*
+     TODO:
+     Format startDate and endDate in a more human-readable format
+     Add $ in front of MRR
+
+     Get UUIDs for 'row' and possibly use that as the checkbox value instead
+   */
   return (
     <Table>
       <thead>

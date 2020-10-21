@@ -12,6 +12,11 @@ const TradingView = ({ data }) => {
   const [subscriptions, setSubscriptions] = useState({});
 
   const handleSubmit = () => {
+    /*
+      subscriptions is an object w/ the shape { [company]: mrr }
+      depending on the endpoint this submission is hitting, we would likely want to send
+      a list of unique identifiers instead of the value of `subscriptions`
+     */
     alert(JSON.stringify(subscriptions));
   };
 
@@ -39,6 +44,14 @@ const TradingView = ({ data }) => {
     setSubscriptions(newSubs);
   };
 
+  /*
+     Assuming the 'Pipe Subscriptions' button is a form submission,
+     this component should probably be wrapped in a `<form>`
+
+     Quite a few spots in the codebase where I grab the number of data and subscriptions
+     w/ Object.keys, could possibly add another useState line for subs
+
+   */
   return (
     <Container>
       <Row>
