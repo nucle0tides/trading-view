@@ -27,12 +27,10 @@ const TradingView = ({ data }) => {
 
   const updateSubscriptionCount = (number) => {
     const subs = data.slice(0, number);
-    const newSubs = subs.reduce((acc, val) => {
-      return {
-        ...acc,
-        [val.company]: val.mrr,
-      };
-    }, {});
+    const newSubs = subs.reduce((acc, val) => ({
+      ...acc,
+      [val.company]: val.mrr,
+    }), {});
     setSubscriptions(newSubs);
   };
 

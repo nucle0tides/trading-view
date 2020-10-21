@@ -25,5 +25,6 @@ module.exports = {
     'react/jsx-one-expression-per-line': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/jsx-fragments': ['error', 'element'],
+    'react/prop-types': [0],
   },
 };

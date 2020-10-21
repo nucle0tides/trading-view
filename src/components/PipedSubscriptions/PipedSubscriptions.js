@@ -5,7 +5,7 @@ const PipedSubscriptions = ({ subscriptions }) => {
 
   useEffect(() => {
     // actually need to take startDate and endDate into account, but we won't worry abt that rn
-    const mrr = Object.values(subscriptions).map((sub) => parseInt(sub));
+    const mrr = Object.values(subscriptions).map((sub) => parseInt(sub, 10));
     const total = mrr.reduce((acc, val) => (acc + val), 0) * 12;
 
     setYearlyMRR(total);

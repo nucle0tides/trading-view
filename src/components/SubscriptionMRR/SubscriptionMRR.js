@@ -4,7 +4,7 @@ const SubscriptionMRR = ({ subscriptions }) => {
   const [totalMRR, setTotalMRR] = useState(0);
 
   useEffect(() => {
-    const mrr = Object.values(subscriptions).map((sub) => parseInt(sub));
+    const mrr = Object.values(subscriptions).map((sub) => parseInt(sub, 10));
     const total = mrr.reduce((acc, val) => (acc + val), 0);
 
     setTotalMRR(total);
