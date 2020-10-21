@@ -3,6 +3,9 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import SubscriptionTable from '../SubscriptionTable';
+import SubscriptionMRR from '../SubscriptionMRR';
+import PipedSubscriptions from '../PipedSubscriptions';
+import SubscriptionSlider from '../SubscriptionSlider';
 
 const TradingView = ({ data }) => {
   const [subscriptions, setSubscriptions] = useState({});
@@ -12,7 +15,7 @@ const TradingView = ({ data }) => {
       if (previousState[company]) {
         const newState = previousState;
         delete newState[company];
-        return newState;
+        return { ...newState };
       }
 
       return {
@@ -20,14 +23,33 @@ const TradingView = ({ data }) => {
         [company]: mrr,
       };
     });
-    console.log(subscriptions);
+  };
+
+  const updateSubscriptionCount = (number) => {
+    const subs = data.slice(0, number);
+    const newSubs = subs.reduce((acc, val) => {
+      return {
+        ...acc,
+        [val.company]: val.mrr,
+      };
+    }, {});
+    setSubscriptions(newSubs);
   };
 
   return (
     <Container>
       <Row>
-        <Col>MRR</Col>
-        <Col>Yearly Revenue</Col>
+        <Col>
+          <SubscriptionMRR subscriptions={subscriptions} />
+          <SubscriptionSlider
+            maxSubs={Object.keys(data).length}
+            numSubs={Object.keys(subscriptions).length}
+            onChange={updateSubscriptionCount}
+          />
+        </Col>
+        <Col>
+          <PipedSubscriptions subscriptions={subscriptions} />
+        </Col>
       </Row>
       <Row>
         <SubscriptionTable

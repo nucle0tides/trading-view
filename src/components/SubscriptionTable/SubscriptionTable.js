@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 
 const SubscriptionTable = ({ subscriptions, data, onChange }) => {
+  const [checked, setChecked] = useState({});
+
+  useEffect(() => {
+    setChecked(subscriptions);
+  }, [subscriptions]);
+
   const headers = ['Company Name', 'Status', 'Invoice No.', 'Synced From', 'Start Date', 'End Date', 'Monthly Revenue'];
 
   const handleChange = (e) => {
@@ -27,6 +33,7 @@ const SubscriptionTable = ({ subscriptions, data, onChange }) => {
                 name={row.company}
                 value={row.company}
                 data-mrr={row.mrr}
+                checked={!!checked[row.company]}
                 onChange={handleChange}
               />
             </td>
